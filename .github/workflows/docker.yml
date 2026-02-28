@@ -23,5 +23,5 @@ jobs:
         run: |
           docker buildx build \
             --platform linux/arm64 \
-            -t dehopen/ui-kit:latest \
+            -t dehopen141/ui-kit:latest \
             --push .

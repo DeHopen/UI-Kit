@@ -9,7 +9,7 @@
   "scripts": {
     "dev": "storybook dev -p 6006",
     "build": "npm run build --workspaces",
-    "build:storybook": "storybook build",
+    "build:storybook": "npx storybook build",
     "lint": "eslint .",
     "format": "prettier --write .",
     "format:check": "prettier --check .",

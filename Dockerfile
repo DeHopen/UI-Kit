@@ -3,7 +3,7 @@ FROM node:20-alpine AS builder
 WORKDIR /app
 COPY . .
 
-RUN npm install --workspaces
+RUN npm ci
 RUN npm run build:storybook
 
 # --- production stage ---

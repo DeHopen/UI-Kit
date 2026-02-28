@@ -1,12 +1,16 @@
 import { useState } from 'react'
 import type { Meta, StoryObj } from '@storybook/react'
-import { ThemeProvider } from '../packages/react/src/theme/ThemeProvider.tsx'
-import { useTheme } from '../packages/react/src/theme/useTheme.ts'
-import { Button } from '../packages/react/src/components/Button/Button.tsx'
-import { Card, CardHeader, CardBody } from '../packages/react/src/components/Card/Card.tsx'
-import { Input } from '../packages/react/src/components/Input/Input.tsx'
-import { Stack } from '../packages/react/src/components/Stack/Stack.tsx'
-import type { ColorMode } from '../packages/react/src/theme/theme.types.ts'
+import {
+  ThemeProvider,
+  useTheme,
+  Button,
+  Card,
+  CardHeader,
+  CardBody,
+  Input,
+  Stack,
+} from '@my-ui/react'
+import type { ColorMode } from '@my-ui/react'
 
 function ThemeSwitcher() {
   const { colorMode, resolvedColorMode, setColorMode } = useTheme()
@@ -18,7 +22,8 @@ function ThemeSwitcher() {
         <CardBody>
           <Stack spacing={4}>
             <p style={{ margin: 0 }}>
-              Current mode: <strong>{colorMode}</strong> (resolved: <strong>{resolvedColorMode}</strong>)
+              Current mode: <strong>{colorMode}</strong> (resolved:{' '}
+              <strong>{resolvedColorMode}</strong>)
             </p>
             <Stack direction="horizontal" spacing={2}>
               <Button
@@ -65,26 +70,6 @@ function ThemeSwitcher() {
   )
 }
 
-const meta = {
-  title: 'Theme/ThemeProvider',
-  component: ThemeProvider,
-  tags: ['autodocs'],
-} satisfies Meta<typeof ThemeProvider>
-
-export default meta
-type Story = StoryObj<typeof meta>
-
-export const Default: Story = {
-  render: () => {
-    const [mode, setMode] = useState<ColorMode>('light')
-    return (
-      <ThemeProvider defaultColorMode={mode} key={mode}>
-        <ThemeSwitcherWrapper onModeChange={setMode} />
-      </ThemeProvider>
-    )
-  },
-}
-
 function ThemeSwitcherWrapper({ onModeChange }: { onModeChange: (mode: ColorMode) => void }) {
   const { setColorMode } = useTheme()
   return (
@@ -107,4 +92,26 @@ function ThemeSwitcherWrapper({ onModeChange }: { onModeChange: (mode: ColorMode
       <ThemeSwitcher />
     </Stack>
   )
+}
+
+function DefaultDemo() {
+  const [mode, setMode] = useState<ColorMode>('light')
+  return (
+    <ThemeProvider defaultColorMode={mode} key={mode}>
+      <ThemeSwitcherWrapper onModeChange={setMode} />
+    </ThemeProvider>
+  )
+}
+
+const meta = {
+  title: 'Theme/ThemeProvider',
+  component: ThemeProvider,
+  tags: ['autodocs'],
+} satisfies Meta<typeof ThemeProvider>
+
+export default meta
+type Story = StoryObj<typeof meta>
+
+export const Default: Story = {
+  render: () => <DefaultDemo />,
 }

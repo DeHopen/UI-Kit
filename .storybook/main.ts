@@ -17,11 +17,12 @@ const config: StorybookConfig = {
     config.resolve.alias = {
       ...config.resolve.alias,
       '@my-ui/core': resolve(__dirname, '../packages/core/src/index.ts'),
+      '@my-ui/react': resolve(__dirname, '../packages/react/src/index.ts'),
     }
 
-    const hasReactPlugin = config.plugins?.flat().some(
-      (p) => p && typeof p === 'object' && 'name' in p && p.name === 'vite:react-babel',
-    )
+    const hasReactPlugin = config.plugins
+      ?.flat()
+      .some((p) => p && typeof p === 'object' && 'name' in p && p.name === 'vite:react-babel')
     if (!hasReactPlugin) {
       config.plugins = [...(config.plugins || []), react()]
     }

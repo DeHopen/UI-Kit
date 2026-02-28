@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import { Card, CardHeader, CardBody, CardFooter } from '../packages/react/src/components/Card/Card.tsx'
-import { Button } from '../packages/react/src/components/Button/Button.tsx'
+import { Card, CardHeader, CardBody, CardFooter, Button } from '@my-ui/react'
 
 const meta = {
   title: 'Components/Card',
@@ -10,9 +9,14 @@ const meta = {
       control: 'select',
       options: ['none', 'sm', 'md', 'lg', 'xl'],
     },
+    radius: {
+      control: 'select',
+      options: ['none', 'sm', 'md', 'lg', 'xl', 'full'],
+    },
   },
   args: {
     shadow: 'sm',
+    radius: 'lg',
   },
   tags: ['autodocs'],
 } satisfies Meta<typeof Card>
@@ -32,8 +36,12 @@ export const Default: Story = {
       </CardBody>
       <CardFooter>
         <div style={{ display: 'flex', gap: '8px', justifyContent: 'flex-end' }}>
-          <Button variant="ghost" size="sm">Cancel</Button>
-          <Button variant="primary" size="sm">Save</Button>
+          <Button variant="ghost" size="sm">
+            Cancel
+          </Button>
+          <Button variant="primary" size="sm">
+            Save
+          </Button>
         </div>
       </CardFooter>
     </Card>
@@ -81,6 +89,20 @@ export const ShadowVariants: Story = {
         <Card key={shadow} shadow={shadow} style={{ width: 200 }}>
           <CardBody>
             <p style={{ margin: 0, fontWeight: 600 }}>shadow=&quot;{shadow}&quot;</p>
+          </CardBody>
+        </Card>
+      ))}
+    </div>
+  ),
+}
+
+export const RadiusVariants: Story = {
+  render: () => (
+    <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap' }}>
+      {(['none', 'sm', 'md', 'lg', 'xl', 'full'] as const).map((radius) => (
+        <Card key={radius} radius={radius} shadow="md" style={{ width: 180 }}>
+          <CardBody>
+            <p style={{ margin: 0, fontWeight: 600 }}>radius=&quot;{radius}&quot;</p>
           </CardBody>
         </Card>
       ))}

@@ -4,9 +4,11 @@ import { cn } from '@my-ui/core'
 import styles from './Card.module.css'
 
 type CardShadow = 'none' | 'sm' | 'md' | 'lg' | 'xl'
+type CardRadius = 'none' | 'sm' | 'md' | 'lg' | 'xl' | 'full'
 
 export interface CardProps extends HTMLAttributes<HTMLDivElement> {
   shadow?: CardShadow
+  radius?: CardRadius
 }
 
 const shadowMap: Record<CardShadow, string> = {
@@ -17,12 +19,25 @@ const shadowMap: Record<CardShadow, string> = {
   xl: styles.shadowXl,
 }
 
+const radiusMap: Record<CardRadius, string> = {
+  none: styles.radiusNone,
+  sm: styles.radiusSm,
+  md: styles.radiusMd,
+  lg: styles.radiusLg,
+  xl: styles.radiusXl,
+  full: styles.radiusFull,
+}
+
 export const Card = forwardRef<HTMLDivElement, CardProps>(function Card(
-  { shadow = 'sm', className, children, ...rest },
+  { shadow = 'sm', radius, className, children, ...rest },
   ref,
 ) {
   return (
-    <div ref={ref} className={cn(styles.card, shadowMap[shadow], className)} {...rest}>
+    <div
+      ref={ref}
+      className={cn(styles.card, shadowMap[shadow], radius && radiusMap[radius], className)}
+      {...rest}
+    >
       {children}
     </div>
   )

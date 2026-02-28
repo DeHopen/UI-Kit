@@ -8,7 +8,12 @@ export { Card, CardHeader, CardBody, CardFooter } from './Card/index.ts'
 export type { CardProps, CardHeaderProps, CardBodyProps, CardFooterProps } from './Card/index.ts'
 
 export { Modal, ModalHeader, ModalBody, ModalFooter } from './Modal/index.ts'
-export type { ModalProps, ModalHeaderProps, ModalBodyProps, ModalFooterProps } from './Modal/index.ts'
+export type {
+  ModalProps,
+  ModalHeaderProps,
+  ModalBodyProps,
+  ModalFooterProps,
+} from './Modal/index.ts'
 
 export { Grid } from './Grid/index.ts'
 export type { GridProps } from './Grid/index.ts'

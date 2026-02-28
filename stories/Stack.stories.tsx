@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import { Stack } from '../packages/react/src/components/Stack/Stack.tsx'
-import { Button } from '../packages/react/src/components/Button/Button.tsx'
+import { Stack, Button } from '@my-ui/react'
 
 const meta = {
   title: 'Layout/Stack',

@@ -49,9 +49,7 @@ describe('useDisclosure', () => {
 
   it('supports controlled mode', () => {
     const onChange = vi.fn()
-    const { result } = renderHook(() =>
-      useDisclosure({ isOpen: false, onChange }),
-    )
+    const { result } = renderHook(() => useDisclosure({ isOpen: false, onChange }))
     act(() => result.current.open())
     expect(onChange).toHaveBeenCalledWith(true)
   })

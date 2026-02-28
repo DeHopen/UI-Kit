@@ -46,6 +46,26 @@
   background-color: var(--ui-color-surface-hover);
 }
 
+/* Radius */
+.radiusNone {
+  border-radius: var(--ui-radius-none);
+}
+.radiusSm {
+  border-radius: var(--ui-radius-sm);
+}
+.radiusMd {
+  border-radius: var(--ui-radius-md);
+}
+.radiusLg {
+  border-radius: var(--ui-radius-lg);
+}
+.radiusXl {
+  border-radius: var(--ui-radius-xl);
+}
+.radiusFull {
+  border-radius: var(--ui-radius-full);
+}
+
 .input {
   flex: 1;
   border: none;

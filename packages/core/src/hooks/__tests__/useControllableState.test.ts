@@ -4,16 +4,12 @@ import { useControllableState } from '../useControllableState.ts'
 
 describe('useControllableState', () => {
   it('uses defaultValue when uncontrolled', () => {
-    const { result } = renderHook(() =>
-      useControllableState({ defaultValue: 'hello' }),
-    )
+    const { result } = renderHook(() => useControllableState({ defaultValue: 'hello' }))
     expect(result.current[0]).toBe('hello')
   })
 
   it('updates uncontrolled value', () => {
-    const { result } = renderHook(() =>
-      useControllableState({ defaultValue: 0 }),
-    )
+    const { result } = renderHook(() => useControllableState({ defaultValue: 0 }))
     act(() => result.current[1](5))
     expect(result.current[0]).toBe(5)
   })
@@ -27,17 +23,13 @@ describe('useControllableState', () => {
 
   it('calls onChange when value changes', () => {
     const onChange = vi.fn()
-    const { result } = renderHook(() =>
-      useControllableState({ defaultValue: 0, onChange }),
-    )
+    const { result } = renderHook(() => useControllableState({ defaultValue: 0, onChange }))
     act(() => result.current[1](10))
     expect(onChange).toHaveBeenCalledWith(10)
   })
 
   it('supports functional updates', () => {
-    const { result } = renderHook(() =>
-      useControllableState({ defaultValue: 5 }),
-    )
+    const { result } = renderHook(() => useControllableState({ defaultValue: 5 }))
     act(() => result.current[1]((prev) => prev + 1))
     expect(result.current[0]).toBe(6)
   })

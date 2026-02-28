@@ -6,10 +6,12 @@ import styles from './Button.module.css'
 
 type ButtonVariant = 'primary' | 'secondary' | 'danger' | 'ghost'
 type ButtonSize = 'sm' | 'md' | 'lg'
+type ButtonRadius = 'none' | 'sm' | 'md' | 'lg' | 'xl' | 'full'
 
 interface ButtonOwnProps {
   variant?: ButtonVariant
   size?: ButtonSize
+  radius?: ButtonRadius
   loading?: boolean
   fullWidth?: boolean
   iconLeft?: ReactNode
@@ -21,15 +23,29 @@ export type ButtonProps<T extends ElementType = 'button'> = PolymorphicComponent
   ButtonOwnProps
 >
 
-type ButtonComponent = <T extends ElementType = 'button'>(
-  props: ButtonProps<T>,
-) => ReactNode
+type ButtonComponent = <T extends ElementType = 'button'>(props: ButtonProps<T>) => ReactNode
+
+const radiusMap: Record<ButtonRadius, string> = {
+  none: styles.radiusNone,
+  sm: styles.radiusSm,
+  md: styles.radiusMd,
+  lg: styles.radiusLg,
+  xl: styles.radiusXl,
+  full: styles.radiusFull,
+}
+
+const iconSizeMap: Record<ButtonSize, string> = {
+  sm: styles.iconSm,
+  md: styles.iconMd,
+  lg: styles.iconLg,
+}
 
 const ButtonInner = forwardRef<HTMLButtonElement, ButtonProps>(function Button(
   {
     as,
     variant = 'primary',
     size = 'md',
+    radius,
     loading = false,
     disabled = false,
     fullWidth = false,
@@ -42,8 +58,8 @@ const ButtonInner = forwardRef<HTMLButtonElement, ButtonProps>(function Button(
   ref,
 ) {
   const Component = (as || 'button') as ElementType
-
   const isDisabled = disabled || loading
+  const isIconOnly = !children && !!(iconLeft || iconRight)
 
   return (
     <Component
@@ -52,8 +68,10 @@ const ButtonInner = forwardRef<HTMLButtonElement, ButtonProps>(function Button(
         styles.button,
         styles[variant],
         styles[size],
+        radius && radiusMap[radius],
         fullWidth && styles.fullWidth,
         loading && styles.loading,
+        isIconOnly && styles.iconOnly,
         className,
       )}
       disabled={Component === 'button' ? isDisabled : undefined}
@@ -66,9 +84,9 @@ const ButtonInner = forwardRef<HTMLButtonElement, ButtonProps>(function Button(
           <span className={styles.spinnerIcon} />
         </span>
       )}
-      {iconLeft && <span className={styles.icon}>{iconLeft}</span>}
+      {iconLeft && <span className={cn(styles.icon, iconSizeMap[size])}>{iconLeft}</span>}
       {children}
-      {iconRight && <span className={styles.icon}>{iconRight}</span>}
+      {iconRight && <span className={cn(styles.icon, iconSizeMap[size])}>{iconRight}</span>}
     </Component>
   )
 })

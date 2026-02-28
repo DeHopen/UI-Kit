@@ -59,7 +59,10 @@ describe('Button', () => {
 
   it('renders iconLeft and iconRight', () => {
     render(
-      <Button iconLeft={<span data-testid="icon-left">L</span>} iconRight={<span data-testid="icon-right">R</span>}>
+      <Button
+        iconLeft={<span data-testid="icon-left">L</span>}
+        iconRight={<span data-testid="icon-right">R</span>}
+      >
         Btn
       </Button>,
     )

@@ -4,15 +4,26 @@ import { cn, useId } from '@my-ui/core'
 import styles from './Input.module.css'
 
 type InputSize = 'sm' | 'md' | 'lg'
+type InputRadius = 'none' | 'sm' | 'md' | 'lg' | 'xl' | 'full'
 
 export interface InputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'size'> {
   label?: string
   error?: string
   helperText?: string
   size?: InputSize
+  radius?: InputRadius
   fullWidth?: boolean
   startIcon?: ReactNode
   endIcon?: ReactNode
+}
+
+const radiusMap: Record<InputRadius, string> = {
+  none: styles.radiusNone,
+  sm: styles.radiusSm,
+  md: styles.radiusMd,
+  lg: styles.radiusLg,
+  xl: styles.radiusXl,
+  full: styles.radiusFull,
 }
 
 export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
@@ -21,6 +32,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
     error,
     helperText,
     size = 'md',
+    radius,
     fullWidth = false,
     startIcon,
     endIcon,
@@ -56,6 +68,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
         className={cn(
           styles.inputWrapper,
           styles[size],
+          radius && radiusMap[radius],
           hasError && styles.error,
           disabled && styles.disabled,
         )}

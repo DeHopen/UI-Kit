@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import { Grid } from '../packages/react/src/components/Grid/Grid.tsx'
+import { Grid } from '@my-ui/react'
 
 const gridItem = {
   background: 'var(--ui-color-primary)',

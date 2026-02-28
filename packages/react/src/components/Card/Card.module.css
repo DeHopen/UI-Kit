@@ -5,27 +5,44 @@
   border: 1px solid var(--ui-color-border);
   border-radius: var(--ui-radius-lg);
   overflow: hidden;
+  color: var(--ui-color-text);
 }
 
 /* Shadow variants */
 .shadowNone {
   box-shadow: var(--ui-shadow-none);
 }
-
 .shadowSm {
   box-shadow: var(--ui-shadow-sm);
 }
-
 .shadowMd {
   box-shadow: var(--ui-shadow-md);
 }
-
 .shadowLg {
   box-shadow: var(--ui-shadow-lg);
 }
-
 .shadowXl {
   box-shadow: var(--ui-shadow-xl);
+}
+
+/* Radius */
+.radiusNone {
+  border-radius: var(--ui-radius-none);
+}
+.radiusSm {
+  border-radius: var(--ui-radius-sm);
+}
+.radiusMd {
+  border-radius: var(--ui-radius-md);
+}
+.radiusLg {
+  border-radius: var(--ui-radius-lg);
+}
+.radiusXl {
+  border-radius: var(--ui-radius-xl);
+}
+.radiusFull {
+  border-radius: var(--ui-radius-full);
 }
 
 .header {
